@@ -12,9 +12,6 @@ The **Skincare Product Recommendation System** is a machine learning-based appli
 ✅ **User-Friendly UI** with **Streamlit**  
 ✅ **Dynamic Recommendations** based on product selection  
 
-## Screenshot
-![Skincare Product Recommendation System](assets/screenshot.png)
-
 ## Dataset
 The dataset contains skincare product details, including:
 - **Brand, Label, Category, Price**
