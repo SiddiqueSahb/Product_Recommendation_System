@@ -87,9 +87,6 @@ streamlit run app.py
 - 🔹 Implement **hybrid filtering** (content + collaborative)
 - 🔹 Improve UI with more **interactive visualizations**
 
-## License
-This project is **open-source** under the **MIT License**.
-
 ---
 🌟 **Enjoy your skincare recommendations!** 🧔
 
