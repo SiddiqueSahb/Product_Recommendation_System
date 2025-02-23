@@ -100,20 +100,29 @@ with col1:
 # Get and display recommendations
 if st.button("Get Recommendations"):
     st.subheader("Recommended Products")
-    
-    recommendations = get_recommendations(product_idx,n_recommendations=5)
-    
-    for i, (_, row) in enumerate(recommendations.iterrows(), start=1):
-        with st.container():
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                st.write(f"### **{i}. {row['Label']}** by {row['Brand']}")
-                st.write(f"Category: {row['Category']}")
-                st.write(f"Skin Type: {row['Skin_Type']}")
-                st.write(f"Benefits: {row['Benefits']}")
-            with col2:
-                st.write(f"Price: ${row['Price']:.2f}")
-                st.write(f"Similarity Score: {row['Similarity Score']:.2%}")
-                st.write(f"Sentiment Score: {row['Avg_Sentiment']:.2f}")
-                st.write(f"Sentiment: {row['sentiment_label']}")
+
+    recommendations = get_recommendations(product_idx, n_recommendations=5)
+
+    # Filter recommendations for only Positive and Neutral sentiment
+    filtered_recommendations = recommendations[
+        recommendations["sentiment_label"].isin(["Positive", "Neutral"])
+    ]
+
+    if filtered_recommendations.empty:
+        st.write("No recommendations with Positive or Neutral sentiment.")
+    else:
+        for i, (_, row) in enumerate(filtered_recommendations.iterrows(), start=1):
+            with st.container():
+                col1, col2 = st.columns([2, 1])
+                with col1:
+                    st.write(f"### **{i}. {row['Label']}** by {row['Brand']}")
+                    st.write(f"Category: {row['Category']}")
+                    st.write(f"Skin Type: {row['Skin_Type']}")
+                    st.write(f"Benefits: {row['Benefits']}")
+                with col2:
+                    st.write(f"Price: ${row['Price']:.2f}")
+                    st.write(f"Similarity Score: {row['Similarity Score']:.2%}")
+                    st.write(f"Sentiment Score: {row['Avg_Sentiment']:.2f}")
+                    st.write(f"Sentiment: {row['sentiment_label']}")
             st.markdown("---")
+
